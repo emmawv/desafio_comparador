@@ -9,8 +9,8 @@ about_page = st.Page(
 )
 
 project_1_page = st.Page(
-    page = "views/sales_dashboard.py",
-    title = 'Dash Ventas',
+    page = "views/mercado.py",
+    title = 'Situación del mercado',
     icon = ":material/bar_chart:",
 )
 
@@ -34,9 +34,13 @@ formulario_factura = st.Page(
     title = 'Rellena el formulario',
     icon = ":material/add_link:"
 )
+camara = st.Page(
 
+    page = "views/camara.py",
+    title = 'Utiliza tu cámara',
+    icon = ":material/add_link:"
+)
 
-
-pg = st.navigation(pages=[about_page, project_1_page, project_2_page, carga_factura, formulario_factura])
+pg = st.navigation(pages=[about_page, project_1_page, project_2_page, carga_factura, formulario_factura, camara])
 
 pg.run()

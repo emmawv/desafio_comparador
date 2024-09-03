@@ -14,18 +14,28 @@ if not os.path.exists(os.path.exists(file_path)):         # crea la carpeta
 
 st.title('Introduce tus datos manualmente')
 
-potencia = st.number_input('¿Cuál es tu término de potencia?')
-st.write('Has introducido:', potencia)
+disc_horar = st.selectbox('¿Tienes una tarifa con discriminación horaria?',('Sí','No'),)
+st.write('Discriminación horaria:', disc_horar)
 
-consumo = st.number_input('¿Cuál es tu consumo para este período?')
-st.write('Has introducido:', consumo)
+
+potencia_punta = st.selectbox('¿Cuál es tu término de potencia en período punta?', ('3,3','4,6','5,5' , '6,9'))
+st.write('Potencia, período punta:', potencia_punta)
+
+
+potencia_valle = st.selectbox('¿Cuál es tu término de potencia en período valle?', ('3,3','4,6','5,5' , '6,9'))
+st.write('Potencia, período punta:', potencia_valle)
+
+consumo = st.number_input('¿Cuál es tu término de consumo? En kW/h')
+st.write('Consumo total:', consumo)
 
 #faltan más datos de factura: precios, peajes...
 
 
 if st.button('Calcula la mejor tarifa'):            # Calcular la tarifa y guardar los valores
     nuevo_df = pd.DataFrame({
-        'Termino de potencia': [potencia],
+        'Discriminacion horaria': [disc_horar],
+        'Termino de potencia en valle': [potencia_valle],
+        'Termino de potencia en punta': [potencia_punta],
         'Termino de consumo': [consumo]
     })
     
@@ -37,4 +47,4 @@ if st.button('Calcula la mejor tarifa'):            # Calcular la tarifa y guard
     
     df_actualizado.to_csv(file_path, index=False)
     
-    st.success('Datos guardados correctamente en el archivo. Calculando la mejor tarifa para ti.')
+    st.success('Datos guardados correctamente. Calculando la mejor tarifa para ti.')
