@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 #seteo rutas
-file_path = '../Datos/datos_tarifas.csv'   # ruta del archivo
+file_path = '../../Datos/datos_tarifas.csv'   # ruta del archivo
 if not os.path.exists(os.path.exists(file_path)):         # crea la carpeta
     os.makedirs(os.path.exists(file_path))
 
