@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "tough-silicon-434716-i2",
+  "private_key_id": "7ec817f0a78c24a6c7cf65bac231a7c28076984f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDGKWNCbXnB3pOe\ngD6KsRxO9S3d6Y3s/VJzRJ5DmGNRINRo5uYlO3rRFp4VqnFAUu4Xm9n+guk9hxbG\ncXGfI/rYWE3ZEw7uNbfjI9svxxv5mNjM/qIb3lgy9M5ZIPWAxB22zd7du3Vb754f\nCBWIDIZ2KVXze0nkLGJcyhCSstWAYlVNxI+NCC8XyH4nRHHz7VJRwSDejkTmK5E+\nu7rKfXMbh9yTRuxNdEEGgp7p+D+OFJd5ub2CPLk3umCKuiv56xMJ6hE62L8dheZy\n9cnt0d0lbcsHEwo4hpWJTuf7vzNHyQ+d1SxdMhcu3cBnVQsdXJco1IwjpWHypvsk\nCwthTvRXAgMBAAECggEASDydKQGEgaZUNNL2OZPPyH67LiquKKa98DQi52w9RD1O\nAUGuwwLYRjFTBn3gE/1HOwb+5DcvtFSy+jsvmr5Aeq5SDqBScIbXlm8jP1r7eTT9\nT1lBmhwnFchFEpufs0WKuXF53WWxJgcHIrPNOY+rUpbF9ODMMmf1oXKtsPSNPOO3\ndvoNX6rPNzptguKpGKrS0FYUv4RY3lKPnyvvju6m+yfDtIVc+mN5FHJuhZsdGiL2\n73rX8AsoISXfmisMmG2vfrO+FZITjuqOuJscfGvXlNE9C0tLBp3kEWzx/K41bGDh\ng62xw8ABdxl14qKm6mE+aGPey2QUPwce1EcTBMHJGQKBgQDpt83wDXPmay0OmW7X\n5V5MNV9EIgx54gf3+U60bHVH6DrkqDB1mbkxzrzUdTipeqylO3J/09DMiKsPwhDC\nc/1GvqrwD1Wm9htangIVrepaSt9N1948WJnZQ1Gp5wc0pPaSfLogwajhA+YRQArC\nsF5YAfAHP9Y8OnDHcxc1/gaMnwKBgQDZDcjXqV4xaQ4FHlDUtHfv+eaW7yXP2jh2\nZnjXd3wFWuh3/jFe1fkIgARLhkcPj4znSCewm1zqYc+0kQ/+qDtTbdQZemty9+hU\nTVUTS9fjSWO4JtmRiq7yk5HYxlO06B3Qn9H6AKPEjhZTU1NJ7lKmaTPw2gb388lK\nYIyg/DZFSQKBgDTXIo9Qa1DAEHrJg776E5zFQFmmHQ39ZXHSAtJV5xovzgjeYb5k\n1/MD27tpGTtwCdJ9o0B1QjLL/2jbpnBgSvYQq5ME1IegAsU1DiGapW5umRf/YzZf\njcEKME9qdT2YwkqSOn6naigdeomR4hzsRRg+r+bjrusFB3SAd9H0McTfAoGADRGh\naCrQexUiPPioUUZUemSHl8rqcetnvulImWCeXQwuNxtdCaLEjdh3aby6BpvUFhDo\nIuAX5hzhjrO1TNYATHOuc6JFWfTHTlwhpTnJ0+uVT383VmYNRpnQDEdUvu3C7c7R\nq8XiFnGfsoCv4SGyZEatU/Esvj01f370uLS259ECgYEAmQ4RBLVVFxYN9h5BC/C0\nTO1N+oFdwMGKrgwSA9ZH0EAxHGH4dmWo5cY912HmYBm1veHIsuh6WS8XULKQacfm\n/zy7gb4UrBPWHAJsNx+zM6EaE31n8g59pHEnIcKXU584R2o5uthKLY2zZ3hNhCUi\n3C3IbqlTzDbtWm4hAbsQndY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bootcamptbds@tough-silicon-434716-i2.iam.gserviceaccount.com",
+  "client_id": "100616061416650379588",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bootcamptbds%40tough-silicon-434716-i2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
