@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 # Seteo de rutas
-file_path = '../Datos/datos_tarifas.csv'  # Ruta del archivo
+file_path = '../../Datos/datos_tarifas.csv'  # Ruta del archivo
 directory = os.path.dirname(file_path)  # Carpeta de los datos
 
 # Crear la carpeta si no existe
@@ -20,12 +20,12 @@ potencia_punta = st.selectbox('¿Cuál es tu término de potencia en período pu
 st.write('Potencia, período punta:', potencia_punta)
 
 potencia_valle = st.selectbox('¿Cuál es tu término de potencia en período valle?', ('3,3', '4,6', '5,5', '6,9'))
-st.write('Bono social:', potencia_valle)
+st.write('Potencia, período valle:', potencia_valle)
 
 bono = st.selectbox('¿Dispones del bono social?', ('Sí', 'No'))
 st.write('Discriminación horaria:', disc_horar)
 
-total = st.number_input('¿Cuál ha sido el total de la factura?')
+total = st.number_input('¿Cuál ha sido el total de la factura? En €')
 st.write('Total factura:', total)
 
 # Campo de consumo general (solo se habilita si no hay discriminación horaria)
@@ -58,9 +58,10 @@ if st.button('Calcula la mejor tarifa'):
         'Consumo en llano (kWh)': [consumo_llano],
         'Consumo en valle (kWh)': [consumo_valle],
         'Consumo total (kWh)': [consumo_total],
-        'Bono social': [bono],
-        'Total factura': [total]
+        'Bono social':[bono],
+        'Total factura':[total]
     })
+
 
     # Comprobar si el archivo ya existe para actualizar o crear uno nuevo
     if os.path.exists(file_path):
@@ -72,3 +73,13 @@ if st.button('Calcula la mejor tarifa'):
     # Guardar el DataFrame actualizado
     df_actualizado.to_csv(file_path, index=False)
     st.success("Datos guardados correctamente.")
+
+
+
+#min dataframa
+
+st.write('Hemos encontrado esta tarifa:',           ) #min tarifa para datos dados) 
+
+#dif_tarifa = total_factura - total_clientes
+
+st.write('Mejoraría tu tarifa en {dif_tarifa}')
