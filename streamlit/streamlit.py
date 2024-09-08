@@ -38,14 +38,14 @@ formulario = st.Page(
 
     page = "views/formulariocopy.py",
     title = 'Rellena el formulario',
-    icon = ":material/add_link:"
+    icon = ":material/mode:"
 )
 
 camara = st.Page(
 
     page = "views/camara.py",
     title = 'Utiliza tu cámara',
-    icon = ":material/add_link:"
+    icon = ":material/photo_camera:"
 )
 
 pg = st.navigation(pages=[about_page, project_1_page, project_2_page, carga_factura, formulario , camara, g])

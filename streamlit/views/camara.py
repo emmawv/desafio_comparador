@@ -1,38 +1,45 @@
 import streamlit as st
 import cv2
-from PIL import Image
+import easyocr
 import numpy as np
+import matplotlib.pyplot as plt
 
-# Título de la aplicación
-st.title('Reconocimiento de Rostros en Foto')
+# Título de la página
+st.title("Captura de Imagen y OCR con OpenCV y EasyOCR")
 
-# Captura de imagen de la cámara
-uploaded_file = st.camera_input("Haz una foto a tu factura")
+# Componente de Streamlit para usar la cámara web
+img_file = st.camera_input("Toma una foto")
 
-if uploaded_file is not None:
-    # Leer la imagen desde el archivo cargado
-    image = Image.open(uploaded_file)
+# Verificar si la imagen ha sido capturada
+if img_file is not None:
+    # Convertir la imagen capturada en bytes a un formato que OpenCV pueda utilizar
+    file_bytes = np.asarray(bytearray(img_file.read()), dtype=np.uint8)
+    img = cv2.imdecode(file_bytes, 1)
 
-    # Convertir la imagen a formato numpy array
-    image_np = np.array(image)
+    # =============================
+    # Algoritmo de OpenCV y EasyOCR (el que me pasaste)
+    # =============================
 
-    # Convertir la imagen a escala de grises
-    gray = cv2.cvtColor(image_np, cv2.COLOR_BGR2GRAY)
+    # Procesar la imagen con EasyOCR
+    reader = easyocr.Reader(['es'], gpu=False)  # Cambiar a GPU=True si tienes una GPU disponible
+    text_ = reader.readtext(img)
 
-    # Cargar el clasificador en cascada para detección de rostros
-    cascada_rostro_path = cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
-    cascada_rostro = cv2.CascadeClassifier(cascada_rostro_path)
+    # Dibujar las cajas delimitadoras y el texto en la imagen
+    for t in text_:
+        bbox, text, score = t
+        cv2.rectangle(img, bbox[0], bbox[2], (255, 0, 0), 2)  # Dibujar rectángulo
+        cv2.putText(img, text, bbox[0], cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)  # Agregar texto
 
-    # Verificar si el clasificador se cargó correctamente
-    if cascada_rostro.empty():
-        st.error(f"No se pudo cargar el clasificador en cascada desde la ruta: {cascada_rostro_path}")
-    else:
-        # Detectar rostros en la imagen
-        rostros = cascada_rostro.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+    # Mostrar la imagen procesada con los textos detectados
+    st.image(cv2.cvtColor(img, cv2.COLOR_BGR2RGB), caption="Imagen procesada", use_column_width=True)
 
-        # Dibujar rectángulos alrededor de los rostros detectados
-        for (x, y, w, h) in rostros:
-            cv2.rectangle(image_np, (x, y), (x + w, y + h), (255, 0, 0), 2)
+    # Mostrar el texto extraído en la aplicación
+    extracted_text = "\n".join([t[1] for t in text_])
+    st.text("Texto extraído:")
+    st.write(extracted_text)
 
-        # Mostrar la imagen con los rostros detectados en Streamlit
-        st.image(image_np, channels="BGR")
+    # Si quieres mostrar la imagen en Matplotlib con los textos detectados
+    fig, ax = plt.subplots()
+    ax.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    plt.axis('off')  # Eliminar los ejes
+    st.pyplot(fig)  # Mostrar la imagen procesada usando Matplotlib
