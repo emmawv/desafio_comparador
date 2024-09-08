@@ -36,7 +36,7 @@ carga_factura = st.Page(
 
 formulario = st.Page(
 
-    page = "views/formulario.py",
+    page = "views/formulariocopy.py",
     title = 'Rellena el formulario',
     icon = ":material/add_link:"
 )
