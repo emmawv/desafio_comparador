@@ -80,6 +80,8 @@ if st.button('Calcula la mejor tarifa'):
 
 #min dataframa
 
+
+
 st.write('Hemos encontrado esta tarifa:',           ) #min tarifa para datos dados) 
 
 #dif_tarifa = total_factura - total_clientes

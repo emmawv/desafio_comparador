@@ -44,13 +44,16 @@ st.image('images/detalle_potencia.jpg')
 
 st.markdown(""" 
 
-En primer lugar, tenemos el término de **<u>potencia</u>**:
+En segundo lugar, debemos observar el término de **<u>consumo o energía</u>**:
 
-Es el parámetro que indica la cantidad de energía eléctrica máxima admitida por nuestra red doméstica. 
+Es el parámetro que indica la cantidad de energía consumida a lo largo de un período determinado. Es el término variable de la factura, sobre el que podemos prestar más atención para ahorrar en el día a día. 
 
-A su vez, este parámetro se descompone a su vez en dos franjas:           
+Este parámetro se descompone en función de la tarifa que elijamos:
+
+
+
              
-- ** Término de potencia punta **: Va de las 08:00 a las 24:00. 
+- ****: Va de las 08:00 a las 24:00. 
     
 - **Término de potencia valle**: Va de las 24:00 a las 08:00
 
