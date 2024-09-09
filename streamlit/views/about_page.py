@@ -22,18 +22,25 @@ En primer lugar, tenemos el término de **<u>potencia</u>**:
 Es el parámetro que indica la cantidad de energía eléctrica máxima admitida por nuestra red doméstica. 
 
 A su vez, este parámetro se descompone a su vez en dos franjas:           
+            
              
-- ** Término de potencia punta **: Va de las 08:00 a las 24:00. 
+- **Término de potencia punta**: Va de las 08:00 a las 24:00. 
     
-- **Término de potencia valle**: Va de las 24:00 a las 08:00
+- **Término de potencia valle**: Va de las 24:00 a las 08:00.
+            
 
 Podríamos asemejar este concepto al diámetro de una tubería de agua. A mayor diámetro, mayor capacidad de tránsito y mayor capacidad, en general, de la red.
 
 
-En tu factura, deberías encontrar referencias a estos dos términos así como sus precios asociados. """, unsafe_allow_html=True)
+En tu factura, deberías encontrar referencias a estos dos términos así como sus precios asociados. 
+
+Te adjuntamos una foto del concepto""", unsafe_allow_html=True)
+
+st.image('images/detalle_potencia.jpg')
 
 
-            
+
+
 
 st.markdown(""" 
 
@@ -77,6 +84,9 @@ Los términos habituales variarán en función del tamaño de tu vivienda, el n�
 
          
 
+            
+
+            
 En esta sección te explicaremos cómo funciona el mercado eléctrico y los conceptos clave para que entiendas cómo se calcula tu factura.
 
 ¿Cómo funciona el mercado eléctrico?

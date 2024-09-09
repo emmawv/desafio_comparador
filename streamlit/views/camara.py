@@ -21,7 +21,7 @@ if img_file is not None:
     # =============================
 
     # Procesar la imagen con EasyOCR
-    reader = easyocr.Reader(['es'], gpu=False)  # Cambiar a GPU=True si tienes una GPU disponible
+    reader = easyocr.Reader(['es'], gpu=False, )  # Cambiar a GPU=True si tienes una GPU disponible
     text_ = reader.readtext(img)
 
     # Dibujar las cajas delimitadoras y el texto en la imagen

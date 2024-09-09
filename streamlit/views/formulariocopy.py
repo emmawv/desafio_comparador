@@ -28,6 +28,8 @@ st.write('Discriminación horaria:', disc_horar)
 total = st.number_input('¿Cuál ha sido el total de la factura? En €')
 st.write('Total factura:', total)
 
+
+
 # Campo de consumo general (solo se habilita si no hay discriminación horaria)
 if disc_horar == 'Sí':
     st.warning("Tu consumo está dividido en varios periodos, por lo que no puedes introducir un consumo total.")

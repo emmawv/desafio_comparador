@@ -9,14 +9,14 @@ iris_df = px.data.iris()
 st.title('Gráfico del mercado: Iris Dataset')
 
 # Crear un selector para filtrar por tipo de flor
-especie = st.selectbox(
+tarifas = st.selectbox(
     'Selecciona el tipo de flor:',
     options=['Todas'] + iris_df['species'].unique().tolist()
 )
 
-# Filtrar el DataFrame según la especie seleccionada
-if especie != 'Todas':
-    iris_df = iris_df[iris_df['species'] == especie]
+# Filtrar el DataFrame según la tarifas seleccionada
+if tarifas != 'Todas':
+    iris_df = iris_df[iris_df['species'] == tarifas]
 
 # Crear el gráfico de dispersión
 basic_scatter_fig = px.scatter(
