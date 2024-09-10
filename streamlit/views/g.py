@@ -1,13 +1,18 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-import time 
+from datetime import time
+from datetime import date
+
 
 # Cargar el conjunto de datos Iris
 df = pd.read_csv('../Datos/resultados.csv')
 df =df.drop_duplicates(subset=['tarifa'])
 # Configurar la aplicación Streamlit
-st.title('Comparativa compañías más baratas a ')
+
+fecha_actual = date.today().strftime('%d-%m-%Y')
+st.title(f'Comparativa compañías más baratas a {fecha_actual}')
+
 
 #RELLENAR
 st.write ('Considerando tu consumo de formulario, estas son las tarifas de ')
@@ -81,7 +86,7 @@ fig1.update_traces(hovertemplate='<b>Compañia:</b> %{customdata[0]} <br><b>Tari
 
 
 fig2 = px.scatter(df, x="tarifa", 
-  y="total_factura", color_continuous_scale='sunset',width=700, height=400,
+  y="total_factura", color_continuous_scale='sunset',
   color="total_factura", hover_data=['tarifa', 'compania', 'total_factura'], custom_data=['compania'], labels={"tarifa": "Tarifa", "total_factura": "Precio factura"})
 fig2.update_layout(coloraxis_showscale=False, title={
         'text': "Comparativa compañias",
@@ -103,3 +108,43 @@ st.plotly_chart(fig2)
 
 
 
+import streamlit as st
+import pandas as pd
+from datetime import time
+from datetime import date
+import streamlit as st
+import plotly.express as px
+import pandas as pd
+from datetime import time
+from datetime import date
+
+
+
+# Cargar el conjunto de datos Iris
+df = pd.read_csv('../Datos/resultados.csv')
+df =df.drop_duplicates(subset=['tarifa'])
+# Configurar la aplicación Streamlit
+
+fecha_actual = date.today().strftime('%d-%m-%Y')
+st.title(f'Comparativa de mercado {fecha_actual}')
+
+
+
+
+fig2 = px.scatter(df, x="tarifa", 
+  y="total_factura", color_continuous_scale='sunset',
+  color="total_factura", hover_data=['tarifa', 'compania', 'total_factura'], custom_data=['compania'], labels={"tarifa": "Tarifa", "total_factura": "Precio factura"})
+fig2.update_layout(width=1500, height=1200,
+    
+    
+    coloraxis_showscale=False, title={
+        'text': "Comparativa compañias",
+        'y':0.95,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'})
+fig2.update_traces(hovertemplate='<b>Compañia:</b> %{customdata[0]} <br><b>Tarifa:</b> %{x} <br><b>Precio factura:</b> %{y:.2f}')
+fig2.update_xaxes(tickangle=45)
+
+
+st.plotly_chart(fig2)
