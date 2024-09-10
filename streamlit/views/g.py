@@ -1,73 +1,105 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
+import time 
 
 # Cargar el conjunto de datos Iris
-iris_df = px.data.iris()
-
+df = pd.read_csv('../Datos/resultados.csv')
+df =df.drop_duplicates(subset=['tarifa'])
 # Configurar la aplicación Streamlit
-st.title('Gráfico del mercado: Iris Dataset')
+st.title('Comparativa compañías más baratas a ')
+
+#RELLENAR
+st.write ('Considerando tu consumo de formulario, estas son las tarifas de ')
 
 # Crear un selector para filtrar por tipo de flor
 tarifas = st.selectbox(
-    'Selecciona el tipo de flor:',
-    options=['Todas'] + iris_df['species'].unique().tolist()
+    'Selecciona el filtro:',
+    options=['Todas'] + df['compania'].unique().tolist()
 )
 
 # Filtrar el DataFrame según la tarifas seleccionada
 if tarifas != 'Todas':
-    iris_df = iris_df[iris_df['species'] == tarifas]
+    df = df[df['compania'] == tarifas]
+
+trf_grf = df.sort_values('total_factura').head(5)
 
 # Crear el gráfico de dispersión
-basic_scatter_fig = px.scatter(
-    iris_df, 
-    x='sepal_width', 
-    y='sepal_length', 
-    color='species', 
-    size='petal_length', 
-    symbol='species',
-    title="Gráfico de Dispersión del Dataset Iris"
+
+fig = px.bar(
+  trf_grf, 
+  x="tarifa", 
+  y=["coste_valle", "coste_llano", "coste_punta"], 
+  color_discrete_map={
+    'coste_valle': '#F29D52',
+    'coste_llano': '#F2C572',
+    'coste_punta': '#F2EAC2'
+    },
+  labels={"compania": "Compañía", "value": "Coste por tramos"},
+  custom_data=['total_factura','compania']
 )
+fig.update_traces(hovertemplate=('<b>Compañia:</b> %{customdata[1]} <br><b>Tarifa:</b> %{x} <br><b>Coste en tramo:</b> %{y:.2f} <br><b>Total factura:</b> %{customdata[0]:.2f}')+"<extra></extra>")
+fig.update_layout(legend=dict(
+    yanchor="top",
+    y=0.96,
+    xanchor="left",
+    x=0.005,
+    title="Rango"
+),
+title={
+        'text': "Comparativa compañias más baratas",
+        'y':0.95,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'})
+fig.update_traces({'name': 'Coste Valle'}, selector={'name': 'coste_valle'})
+fig.update_traces({'name': 'Coste Llano'}, selector={'name': 'coste_llano'})
+fig.update_traces({'name': 'Coste Punta'}, selector={'name': 'coste_punta'})
+
+
+fig1 = px.bar(
+  trf_grf, 
+  x="tarifa", 
+  y="total_factura", 
+  color_continuous_scale='sunset',
+  color="total_factura",
+  custom_data=['compania'],
+  labels={"tarifa": "Tarifas", "total_factura": "Precio factura"},
+)
+
+fig1.update_layout(
+  coloraxis_showscale=False, 
+  yaxis_range=[round(trf_grf["total_factura"].min() - 1, 0), round(trf_grf["total_factura"].max() + 1)],
+  title={
+        'text': "Comparativa compañias más baratas",
+        'y':0.95,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'}
+  )
+fig1.update_traces(hovertemplate='<b>Compañia:</b> %{customdata[0]} <br><b>Tarifa:</b> %{x} <br><b>Precio factura:</b> %{y:.2f}')
+
+
+fig2 = px.scatter(df, x="tarifa", 
+  y="total_factura", color_continuous_scale='sunset',width=700, height=400,
+  color="total_factura", hover_data=['tarifa', 'compania', 'total_factura'], custom_data=['compania'], labels={"tarifa": "Tarifa", "total_factura": "Precio factura"})
+fig2.update_layout(coloraxis_showscale=False, title={
+        'text': "Comparativa compañias",
+        'y':0.95,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'})
+fig2.update_traces(hovertemplate='<b>Compañia:</b> %{customdata[0]} <br><b>Tarifa:</b> %{x} <br><b>Precio factura:</b> %{y:.2f}')
+fig2.update_xaxes(tickangle=45)
+
 
 # Mostrar el gráfico en la aplicación Streamlit
-st.plotly_chart(basic_scatter_fig)
+st.plotly_chart(fig)
+st.plotly_chart(fig1)
+
+st.plotly_chart(fig2)
 
 
-file_path = pd.read_csv('../Datos/database_desafio.csv' )
-database_desafio = pd.read_csv(file_path)
 
-# Eliminar espacios en blanco de los nombres de las columnas
-database_desafio.columns = database_desafio.columns.str.strip()
 
-# Configurar la aplicación Streamlit
-st.title('Gráfico del mercado: Tarifas')
 
-# Verificar las columnas disponibles
-st.write("Columnas disponibles en el DataFrame:")
-st.write(database_desafio.columns)
-
-# Crear un selector para filtrar por compañia
-compania = st.selectbox(
-    'Selecciona la compañía:',
-    options=['Todas'] + database_desafio['compania'].unique().tolist()
-)
-
-# Filtrar el DataFrame según la compañía seleccionada
-if compania != 'Todas':
-    filtered_df = database_desafio[database_desafio['compania'] == compania]
-else:
-    filtered_df = database_desafio
-
-# Crear el gráfico de dispersión
-basic_scatter_fig = px.scatter(
-    filtered_df,
-    x='tp_punta_euros/kwh/dia',  # Ajusta las columnas según tus datos
-    y='tp_valle_euros/kwh/dia',   # Ajusta las columnas según tus datos
-    color='compania',  # Color por compañía
-    size='peaje_ener_punta_tdc',  # Ajusta según tus datos
-    symbol='compania',  # Símbolo por compañía
-    title="Gráfico de Dispersión de Tarifas"
-)
-
-# Mostrar el gráfico en la aplicación Streamlit
-st.plotly_chart(basic_scatter_fig)
