@@ -1,5 +1,4 @@
 Discriminacion horaria,Termino de potencia en valle,Termino de potencia en punta,Consumo en punta (kWh),Consumo en llano (kWh),Consumo en valle (kWh),Consumo total (kWh),Bono social,Total factura
-Sí,"5,5","5,5",200.0,200.0,200.0,,Sí,3000.0
-Sí,"3,3","3,3",150.0,150.0,150.0,,No,150.0
-Sí,"3,3","3,3",150.0,2000.0,0.0,,No,150.0
-No,"3,3","3,3",,,,0.0,Sí,0.0
+No,"3,3","3,3",,,,2.0,Sí,2000.0
+No,"3,3","3,3",,,,200.0,Sí,1500.0
+No,"3,3","3,3",,,,10.0,Sí,3000.0

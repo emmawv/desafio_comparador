@@ -32,7 +32,7 @@ A su vez, este parámetro se descompone a su vez en dos franjas:
 Podríamos asemejar este concepto al diámetro de una tubería de agua. A mayor diámetro, mayor capacidad de tránsito y mayor capacidad, en general, de la red.
 
 
-En tu factura, deberías encontrar referencias a estos dos términos así como sus precios asociados. 
+En tu factura, deberías encontrar referencias a estos dos términos así como sus precios asociados.
 
 Te adjuntamos una foto del concepto""", unsafe_allow_html=True)
 
@@ -50,7 +50,7 @@ Es el parámetro que indica la cantidad de energía consumida a lo largo de un p
 
 Este parámetro se descompone en función de la tarifa que elijamos:
 
-
+(TERMINAR)
 
              
 - ****: Va de las 08:00 a las 24:00. 

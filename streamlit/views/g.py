@@ -14,6 +14,7 @@ fecha_actual = date.today().strftime('%d-%m-%Y')
 st.title(f'Comparativa compañías más baratas a {fecha_actual}')
 
 
+
 #RELLENAR
 st.write ('Considerando tu consumo de formulario, estas son las tarifas de ')
 

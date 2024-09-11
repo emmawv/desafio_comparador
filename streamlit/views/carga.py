@@ -11,7 +11,7 @@ uploaded_file = st.file_uploader('Sube tu factura en formato PDF', type='pdf')
 
 # Si el archivo ha sido subido
 if uploaded_file is not None:
-    st.write(f"Nombre del archivo: {uploaded_file.name}")
+    st.write()
     
     # Directorio donde se guardará el archivo
     save_directory = "facturas_subidas"
@@ -53,8 +53,8 @@ if uploaded_file is not None:
         patron_energia = r"Energía Activa:\s*(\d+[.,]\d+)\s?€"
         energia = re.search(patron_energia, texto, re.IGNORECASE)
         energia = energia.group(1) if patron_energia else "No se encontró la energía consumida"
-    
-        
+
+
         return total_a_pagar, potencia, energia
 
     # Llamar a la función y extraer los datos

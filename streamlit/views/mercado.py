@@ -6,9 +6,13 @@ import plotly.express as px
 
 df = pd.read_csv('../Datos/resultados.csv')
 df = df.drop_duplicates(subset=['tarifa'])
+datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
 
+consumo = 0
 fecha_actual = date.today().strftime('%d-%m-%Y')
 st.title(f'Comparativa de mercado a día {fecha_actual}')
+
+st.write(f'Gráficos generado para un consumo de {consumo} kW')
 
 col1, = st.columns(1)  
 

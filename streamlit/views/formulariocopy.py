@@ -77,13 +77,18 @@ if st.button('Calcula la mejor tarifa'):
     st.success("Datos guardados correctamente.")
 
 
-
 #min dataframa
+resultados = pd.read_csv("../Datos/resultados.csv")
+minimo = resultados[resultados['total_factura'] == resultados['total_factura'].min()].iloc[0]
 
 
+datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
 
-st.write('Hemos encontrado esta tarifa:',           ) #min tarifa para datos dados) 
+consumo_usuario = datos_formulario['Total factura'].tail(1) 
+consumo_usuario
+st.write(f'Hemos encontrado esta tarifa: {minimo["tarifa"]} de {minimo["compania"]}') #min tarifa para datos dados) 
 
-#dif_tarifa = total_factura - total_clientes
 
-st.write('Mejoraría tu tarifa en {dif_tarifa}')
+dif_tarifa = minimo['total_actual'] - minimo['total_factura']
+
+st.write(f'Mejoraría tu tarifa en {dif_tarifa:.2f}€')
