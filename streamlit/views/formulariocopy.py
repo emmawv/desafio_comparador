@@ -57,7 +57,7 @@ if st.button('Calcula la mejor tarifa'):
     st.success("Datos guardados correctamente.")
 
 
-#min dataframa
+#min dataframe
 resultados = pd.read_csv("../Datos/resultados.csv")
 minimo = resultados[resultados['total_factura'] == resultados['total_factura'].min()].iloc[0]
 

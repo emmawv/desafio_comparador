@@ -7,20 +7,23 @@ from datetime import date
 
 # Cargar el conjunto de datos Iris
 df = pd.read_csv('../Datos/resultados.csv')
-df =df.drop_duplicates(subset=['tarifa'])
+df = df.drop_duplicates(subset=['tarifa'])
+datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
+
 # Configurar la aplicación Streamlit
 
 fecha_actual = date.today().strftime('%d-%m-%Y')
 st.title(f'Comparativa compañías más baratas a {fecha_actual}')
 
+consumo = datos_formulario['Consumo total (kWh)'].iloc[-1]
 
 
 #RELLENAR
-st.write ('Considerando tu consumo de formulario, estas son las tarifas de ')
+st.write (f'Considerando tu consumo de {consumo}, estas son las tarifas de ')
 
 # Crear un selector para filtrar por tipo de flor
 tarifas = st.selectbox(
-    'Selecciona el filtro:',
+    'Selecciona la compañía:',
     options=['Todas'] + df['compania'].unique().tolist()
 )
 
