@@ -8,11 +8,15 @@ df = pd.read_csv('../Datos/resultados.csv')
 df = df.drop_duplicates(subset=['tarifa'])
 datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
 
-consumo = 0
+companias = st.selectbox('Selecciona la compañía que quieres consultar: ', options=['Todas'] + df['compania'].unique().tolist())
+
+consumo = datos_formulario['Consumo total (kWh)'].iloc[-1]
+
+
 fecha_actual = date.today().strftime('%d-%m-%Y')
 st.title(f'Comparativa de mercado a día {fecha_actual}')
 
-st.write(f'Gráficos generado para un consumo de {consumo} kW')
+st.write(f'Gráficos generado para un consumo de {consumo} kW, según los datos introducidos en el formulario.')
 
 col1, = st.columns(1)  
 

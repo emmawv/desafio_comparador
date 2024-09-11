@@ -16,14 +16,12 @@ st.title('Introduce tus datos manualmente')
 disc_horar = st.selectbox('¿Tienes una tarifa con discriminación horaria?', ('No', 'Sí'))
 st.write('Discriminación horaria:', disc_horar)
 
-potencia_punta = st.selectbox('¿Cuál es tu término de potencia en período punta?', ('3,3', '4,6', '5,5', '6,9'))
+potencia_punta = st.selectbox('¿Cuál es tu término de potencia en período punta?', ('3.3', '4.6', '5.5', '6.9'))
 st.write('Potencia, período punta:', potencia_punta)
 
-potencia_valle = st.selectbox('¿Cuál es tu término de potencia en período valle?', ('3,3', '4,6', '5,5', '6,9'))
+potencia_valle = st.selectbox('¿Cuál es tu término de potencia en período valle?', ('3.3', '4.6', '5.5', '6.9'))
 st.write('Potencia, período valle:', potencia_valle)
 
-bono = st.selectbox('¿Dispones del bono social?', ('Sí', 'No'))
-st.write('Discriminación horaria:', disc_horar)
 
 total = st.number_input('¿Cuál ha sido el total de la factura? En €')
 st.write('Total factura:', total)
@@ -53,7 +51,6 @@ if st.button('Calcula la mejor tarifa'):
 
     # Crear DataFrame con discriminación horaria o sin ella
     datos_tarifas = pd.DataFrame({
-        'Discriminacion horaria': [disc_horar],
         'Termino de potencia en valle': [potencia_valle],
         'Termino de potencia en punta': [potencia_punta],
         'Consumo en punta (kWh)': [consumo_punta],
