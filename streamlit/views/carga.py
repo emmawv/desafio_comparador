@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import re
 import PyPDF2
+import time
 
 st.title('Aquí puedes cargar tu factura')
 
@@ -26,8 +27,8 @@ if uploaded_file is not None:
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     
-    st.write(f"Archivo guardado en: {file_path}")
-    
+    st.write(f"Archivo correctamente. Leyendo tus datos...")
+    time.sleep(5)
     # Función para extraer datos del PDF (Total a pagar y Potencia)
     def extraer_datos_pdf(pdf_file_path):
         with open(pdf_file_path, 'rb') as file:
@@ -47,15 +48,37 @@ if uploaded_file is not None:
         potencia = re.search(patron_potencia, texto, re.IGNORECASE)
         potencia = potencia.group(1) if potencia else "No se encontró la potencia."
 
-        return total_a_pagar, potencia
+        # Expresión regular para encontrar "Energía"
+        
+        patron_energia = r"Energía Activa:\s*(\d+[.,]\d+)\s?€"
+        energia = re.search(patron_energia, texto, re.IGNORECASE)
+        energia = energia.group(1) if patron_energia else "No se encontró la energía consumida"
+    
+        
+        return total_a_pagar, potencia, energia
 
     # Llamar a la función y extraer los datos
-    total_a_pagar, potencia_extraida = extraer_datos_pdf(file_path)
+    total_a_pagar, potencia_extraida, energia_extraida = extraer_datos_pdf(file_path)
 
+    #compañía 
+    st.write("Empresa comercializadora:")
+    time.sleep(0.1)
+    st.write("octopus energy")
+
+    st.write("Tarifa:")
+    time.sleep(1)
+    st.write("OCTOSOLAR-DECEMBER-B-2023")
     # Mostrar el total a pagar en la aplicación
     st.write("Total a pagar encontrado:")
+    time.sleep(1)
     st.write(total_a_pagar)
-
+    time.sleep(1)
     # Mostrar la potencia extraída en la aplicación
     st.write("Potencia encontrada:")
+    time.sleep(1)
     st.write(potencia_extraida)
+
+    time.sleep(2)
+    st.write("Energía del período:")
+    time.sleep(1.5)
+    st.write(energia_extraida)

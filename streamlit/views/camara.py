@@ -5,10 +5,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Título de la página
-st.title("Captura de Imagen y OCR con OpenCV y EasyOCR")
+st.title("¡Haz una foto a tu factura!")
 
 # Componente de Streamlit para usar la cámara web
-img_file = st.camera_input("Toma una foto")
+img_file = st.camera_input("")
 
 # Verificar si la imagen ha sido capturada
 if img_file is not None:
@@ -16,30 +16,24 @@ if img_file is not None:
     file_bytes = np.asarray(bytearray(img_file.read()), dtype=np.uint8)
     img = cv2.imdecode(file_bytes, 1)
 
-    # =============================
-    # Algoritmo de OpenCV y EasyOCR (el que me pasaste)
-    # =============================
-
-    # Procesar la imagen con EasyOCR
-    reader = easyocr.Reader(['es'], gpu=False)  # Cambiar a GPU=True si tienes una GPU disponible
+    reader = easyocr.Reader(['es'], gpu=False, )  
     text_ = reader.readtext(img)
 
-    # Dibujar las cajas delimitadoras y el texto en la imagen
+   
     for t in text_:
         bbox, text, score = t
-        cv2.rectangle(img, bbox[0], bbox[2], (255, 0, 0), 2)  # Dibujar rectángulo
-        cv2.putText(img, text, bbox[0], cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)  # Agregar texto
+        cv2.rectangle(img, bbox[0], bbox[2], (240, 50, 0), 2)  # Dibujar rectángulo
+        cv2.putText(img, text, bbox[0], cv2.FONT_HERSHEY_COMPLEX, 1, (0, 10, 250), 2)  # Agregar texto
 
-    # Mostrar la imagen procesada con los textos detectados
+   
     st.image(cv2.cvtColor(img, cv2.COLOR_BGR2RGB), caption="Imagen procesada", use_column_width=True)
 
-    # Mostrar el texto extraído en la aplicación
+    
     extracted_text = "\n".join([t[1] for t in text_])
     st.text("Texto extraído:")
     st.write(extracted_text)
 
-    # Si quieres mostrar la imagen en Matplotlib con los textos detectados
     fig, ax = plt.subplots()
     ax.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    plt.axis('off')  # Eliminar los ejes
-    st.pyplot(fig)  # Mostrar la imagen procesada usando Matplotlib
+    plt.axis('off')  
+    st.pyplot(fig)  
