@@ -10,16 +10,20 @@ df = pd.read_csv('../Datos/resultados.csv')
 df = df.drop_duplicates(subset=['tarifa'])
 datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
 
+datos_formulario['Consumo total (kWh)'] = datos_formulario['Consumo en punta (kWh)'] + datos_formulario['Consumo en llano (kWh)'] + datos_formulario['Consumo en valle (kWh)']
+ultimo_consumo_total = datos_formulario['Consumo total (kWh)'].iloc[-1]
+
+
 # Configurar la aplicación Streamlit
 
 fecha_actual = date.today().strftime('%d-%m-%Y')
 st.title(f'Comparativa compañías más baratas a {fecha_actual}')
 
-consumo = datos_formulario['Consumo total (kWh)'].iloc[-1]
+
 
 
 #RELLENAR
-st.write (f'Considerando tu consumo de {consumo}, estas son las tarifas de ')
+st.write (f'Estas son las tarifas deConsiderando tu consumo de {ultimo_consumo_total} kW/h.')
 
 # Crear un selector para filtrar por tipo de flor
 tarifas = st.selectbox(
