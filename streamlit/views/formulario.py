@@ -25,9 +25,14 @@ if not os.path.exists(directory):
 # Streamlit
 st.title('Introduce tus datos manualmente')
 
+dh = st.selectbox('¿Cuentas con una tarifa de discriminación horaria?', ('SI', 'NO'))
+st.write('Tu tarifa', dh, 'cuenta con discriminación por tramos.')
+
 
 potencia_punta = st.selectbox('¿Cuál es tu término de potencia en período punta?', ('3.3', '4.6', '5.5', '6.9'))
 st.write('Potencia, período punta:', potencia_punta)
+
+
 
 potencia_valle = st.selectbox('¿Cuál es tu término de potencia en período valle?', ('3.3', '4.6', '5.5', '6.9'))
 st.write('Potencia, período valle:', potencia_valle)
@@ -36,23 +41,27 @@ st.write('Potencia, período valle:', potencia_valle)
 total = st.number_input('¿Cuál ha sido el total de la factura? En €')
 st.write('Total factura:', total)
 
-consumo_punta = st.number_input('¿Cuál es tu consumo en período punta? En kWh', min_value=0.0)
-consumo_llano = st.number_input('¿Cuál es tu consumo en período llano? En kWh', min_value=0.0)
-consumo_valle = st.number_input('¿Cuál es tu consumo en período valle? En kWh', min_value=0.0)
+consumo_punta = st.number_input('¿Cuál es tu consumo en período punta? En kW/h', min_value=0.0)
+consumo_llano = st.number_input('¿Cuál es tu consumo en período llano? En kW/h', min_value=0.0)
+consumo_valle = st.number_input('¿Cuál es tu consumo en período valle? En kW/h', min_value=0.0)
 consumo_total = st.number_input('¿Cuál es tu consumo total de la factura?', min_value=0.0)
 
+bono = st.selectbox('¿Su tarifa cuenta con el bono social', ('SI','NO'))
+st.write('Tu tarifa', bono, 'cuenta con bono social.')
 
 # Botón para calcular la mejor tarifa
 if st.button('Calcula la mejor tarifa'):
 
     # Crear DataFrame con discriminación horaria o sin ella
     datos_tarifas = pd.DataFrame({
+        'Discriminación horaria': [dh],
         'Termino de potencia en valle': [potencia_valle],
         'Termino de potencia en punta': [potencia_punta],
         'Consumo en punta (kWh)': [consumo_punta],
         'Consumo en llano (kWh)': [consumo_llano],
         'Consumo en valle (kWh)': [consumo_valle],
         'Consumo total (kWh)': [consumo_total],
+        'Bono social': [bono],
         'Total factura':[total]
     })
 
