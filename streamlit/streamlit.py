@@ -49,7 +49,7 @@ pg = st.navigation(pages=[about_page, sit_mercado, carga_factura, formulario , c
 import streamlit as st
 
 # Configuración de la página principal
-st.set_page_config(page_title="Mi Aplicación", layout="wide")
+st.set_page_config(page_title="Compara tu Luz", layout="wide")
 
 # Contenido principal de la página
 

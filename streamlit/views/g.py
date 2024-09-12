@@ -10,16 +10,20 @@ df = pd.read_csv('../Datos/resultados.csv')
 df = df.drop_duplicates(subset=['tarifa'])
 datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
 
+datos_formulario['Consumo total (kWh)'] = datos_formulario['Consumo en punta (kWh)'] + datos_formulario['Consumo en llano (kWh)'] + datos_formulario['Consumo en valle (kWh)']
+ultimo_consumo_total = datos_formulario['Consumo total (kWh)'].iloc[-1]
+
+
 # Configurar la aplicación Streamlit
 
 fecha_actual = date.today().strftime('%d-%m-%Y')
 st.title(f'Comparativa compañías más baratas a {fecha_actual}')
 
-consumo = datos_formulario['Consumo total (kWh)'].iloc[-1]
+
 
 
 #RELLENAR
-st.write (f'Considerando tu consumo de {consumo}, estas son las tarifas de ')
+st.write (f'Estas son las tarifas deConsiderando tu consumo de {ultimo_consumo_total} kW/h.')
 
 # Crear un selector para filtrar por tipo de flor
 tarifas = st.selectbox(
@@ -123,32 +127,3 @@ from datetime import time
 from datetime import date
 
 
-
-# Cargar el conjunto de datos Iris
-df = pd.read_csv('../Datos/resultados.csv')
-df =df.drop_duplicates(subset=['tarifa'])
-# Configurar la aplicación Streamlit
-
-fecha_actual = date.today().strftime('%d-%m-%Y')
-st.title(f'Comparativa de mercado {fecha_actual}')
-
-
-
-
-fig2 = px.scatter(df, x="tarifa", 
-  y="total_factura", color_continuous_scale='sunset',
-  color="total_factura", hover_data=['tarifa', 'compania', 'total_factura'], custom_data=['compania'], labels={"tarifa": "Tarifa", "total_factura": "Precio factura"})
-fig2.update_layout(width=1500, height=1200,
-    
-    
-    coloraxis_showscale=False, title={
-        'text': "Comparativa compañias",
-        'y':0.95,
-        'x':0.5,
-        'xanchor': 'center',
-        'yanchor': 'top'})
-fig2.update_traces(hovertemplate='<b>Compañia:</b> %{customdata[0]} <br><b>Tarifa:</b> %{x} <br><b>Precio factura:</b> %{y:.2f}')
-fig2.update_xaxes(tickangle=45)
-
-
-st.plotly_chart(fig2)
