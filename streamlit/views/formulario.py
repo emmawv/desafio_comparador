@@ -6,6 +6,18 @@ import os
 file_path = (r'../Datos/datos_tarifas.csv')  # Ruta del archivo
 directory = os.path.dirname(file_path)  # Carpeta de los datos
 
+
+
+#PARTE PANDAS
+
+resultados = pd.read_csv("../Datos/resultados.csv")
+minimo = resultados[resultados['total_factura'] == resultados['total_factura'].min()].iloc[0]
+datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
+
+consumo_usuario = datos_formulario['Total factura'].tail(1) 
+
+dif_tarifa = minimo['total_actual'] - minimo['total_factura']
+
 # Crear la carpeta si no existe
 if not os.path.exists(directory):
     os.makedirs(directory, exist_ok=True)
@@ -58,17 +70,13 @@ if st.button('Calcula la mejor tarifa'):
 
 
 #min dataframe
-resultados = pd.read_csv("../Datos/resultados.csv")
-minimo = resultados[resultados['total_factura'] == resultados['total_factura'].min()].iloc[0]
 
 
-datos_formulario = pd.read_csv(r'../Datos/datos_tarifas.csv')
 
-consumo_usuario = datos_formulario['Total factura'].tail(1) 
-consumo_usuario
+
 st.write(f'Hemos encontrado esta tarifa: {minimo["tarifa"]} de {minimo["compania"]}') #min tarifa para datos dados) 
 
 
-dif_tarifa = minimo['total_actual'] - minimo['total_factura']
+
 
 st.write(f'Mejoraría tu tarifa en {dif_tarifa:.2f}€')
