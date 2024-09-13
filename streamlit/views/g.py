@@ -17,13 +17,13 @@ ultimo_consumo_total = datos_formulario['Consumo total (kWh)'].iloc[-1]
 # Configurar la aplicación Streamlit
 
 fecha_actual = date.today().strftime('%d-%m-%Y')
-st.title(f'Comparativa compañías más baratas a {fecha_actual}')
+st.title(f' Tus resultados para el día {fecha_actual}')
 
 
 
 
 #RELLENAR
-st.write (f'Estas son las tarifas deConsiderando tu consumo de {ultimo_consumo_total} kW/h.')
+st.write (f'Considerando tu consumo de {ultimo_consumo_total} kW/h.')
 
 # Crear un selector para filtrar por tipo de flor
 tarifas = st.selectbox(
@@ -60,7 +60,7 @@ fig.update_layout(legend=dict(
     title="Rango"
 ),
 title={
-        'text': "Comparativa compañias más baratas",
+        'text': "Top 5 más baratas por tramo",
         'y':0.95,
         'x':0.5,
         'xanchor': 'center',
@@ -84,7 +84,7 @@ fig1.update_layout(
   coloraxis_showscale=False, 
   yaxis_range=[round(trf_grf["total_factura"].min() - 1, 0), round(trf_grf["total_factura"].max() + 1)],
   title={
-        'text': "Comparativa compañias más baratas",
+        'text': "Comparativa más baratas según total factura",
         'y':0.95,
         'x':0.5,
         'xanchor': 'center',
