@@ -27,7 +27,7 @@ if uploaded_file is not None:
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     
-    st.write(f"Archivo correctamente. Leyendo tus datos...")
+    st.write(f"Archivo leído correctamente. Leyendo tus datos...")
     time.sleep(5)
     # Función para extraer datos del PDF (Total a pagar y Potencia)
     def extraer_datos_pdf(pdf_file_path):
